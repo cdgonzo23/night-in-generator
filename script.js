@@ -10,6 +10,7 @@ var featuredDrink = document.querySelector('#featured-drink');
 var featuredDrinkTitle = document.querySelector('#featured-drink-title');
 var drinkDescription = document.querySelector('#drink-description');
 var drinkList = document.querySelector('#drink-list');
+var drinkImg = document.querySelector('#drink-img')
 var featuredMovie = document.querySelector('#featured-movie');
 var featuredMovieTitle = document.querySelector('#featured-movie-title');
 var movieDescription = document.querySelector('#movie-description');
@@ -40,6 +41,33 @@ function getRandomDrink() {
         })
         .then(function(data){
             console.log(data);
+            console.log(data.drinks[0].strInstructions);
+            featuredDrinkTitle.textContent = data.drinks[0].strDrink;
+            drinkDescription.textContent = data.drinks[0].strInstructions;
+            drinkImg.setAttribute('src', data.drinks[0].strDrinkThumb);
+            var drinkIngredients = Object.keys(data.drinks[0]).filter(function(item) {
+                if (/^strIngredient/.test(item) && data.drinks[0][item]) {
+                    return true;
+                }
+            }).map(function(key){
+                return data.drinks[0][key];
+
+            })
+            var drinkPortions = Object.keys(data.drinks[0]).filter(function(item) {
+                if (/^strMeasure/.test(item) && data.drinks[0][item]) {
+                    return true;
+                }
+            }).map(function(key){
+                return data.drinks[0][key];
+
+            })
+            console.log(drinkPortions)
+            for (var i = 0; i < drinkIngredients.length; i++) {
+                var drinkLi = document.createElement('li')
+                drinkLi.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
+                drinkLi.textContent = drinkIngredients[i] + ': ' + drinkPortions[i];
+                drinkList.appendChild(drinkLi);
+            }
         })
     
 
