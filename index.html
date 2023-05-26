@@ -12,8 +12,8 @@
         <h1 class="text-light text-center py-3">Night-In Generator</h1>
         <p class="text-light text-center pb-3">Take the planning out of your night-in</p>
     </header>
-    <main>
-        <fieldset class="form-group m-5">
+    <main class="d-flex flex-column justify-content-center">
+        <fieldset class="form-group m-5 align-self-center">
             <legend class="mt-4">What are you looking for?</legend>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="meal-check">
@@ -42,24 +42,22 @@
               <button type="button" class="btn btn-primary mt-3">Search</button>
           </fieldset>
 
-          <div class="col-12 col-md">
-            <div class="card mb-3">
-                <h3 class="card-header">Card header</h3>
+          <div class="row m-5 ">
+            <div id='featured-meal' class="card mb-3 col-lg-4">
+                <h3 class="card-header">Featured Meal</h3>
                 <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                  <h5 id='featured-meal-title' class="card-title">Special title treatment</h5>
+                  
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
                   <rect width="100%" height="100%" fill="#868E96"></rect>
                   <text x="50%" y="50%" fill="#DEE2E6" dy=".3em">Image cap</text>
                 </svg>
                 <div class="card-body">
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <p id='meal-description' class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
+                <ul id="meal-list" class="list-group list-group-flush">
+                
                 </ul>
                 <div class="card-body">
                   <a href="#" class="card-link">Card link</a>
@@ -70,23 +68,21 @@
                 </div>
               </div>
 
-              <div class="card mb-3">
-                <h3 class="card-header">Card header</h3>
+              <div id='featured-drink' class="card mb-3 col-lg-4">
+                <h3 class="card-header">Featured Drink</h3>
                 <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                  <h5 id='featured-drink-title' class="card-title">Special title treatment</h5>
+                  
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
                   <rect width="100%" height="100%" fill="#868E96"></rect>
                   <text x="50%" y="50%" fill="#DEE2E6" dy=".3em">Image cap</text>
                 </svg>
                 <div class="card-body">
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <p id='drink-description'  class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
+                <ul id="drink-list"  class="list-group list-group-flush">
+                
                 </ul>
                 <div class="card-body">
                   <a href="#" class="card-link">Card link</a>
@@ -97,23 +93,21 @@
                 </div>
               </div>
 
-              <div class="card mb-3">
-                <h3 class="card-header">Card header</h3>
+              <div id='featured-movie' class="card mb-3 col-lg-4">
+                <h3 class="card-header">Featured Movie</h3>
                 <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                  <h5 id='featured-movie-title' class="card-title">Special title treatment</h5>
+                  
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
                   <rect width="100%" height="100%" fill="#868E96"></rect>
                   <text x="50%" y="50%" fill="#DEE2E6" dy=".3em">Image cap</text>
                 </svg>
                 <div class="card-body">
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <p id='movie-description' class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
+                <ul id="movie-list" class="list-group list-group-flush">
+                
                 </ul>
                 <div class="card-body">
                   <a href="#" class="card-link">Card link</a>
@@ -124,8 +118,6 @@
                 </div>
               </div>
           </div>
-
-
     </main>
     
 
