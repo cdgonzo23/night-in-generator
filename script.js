@@ -2,24 +2,27 @@ var mealCheck = document.querySelector('#meal-check');
 var drinkCheck = document.querySelector('#drink-check');
 var movieCheck = document.querySelector('#movie-check');
 var searchBtn = document.querySelector('#search-btn');
-var featuredMeal = document.querySelector('#featured-meal');
-var featuredMealTitle = document.querySelector('#featured-meal-title');
+var mealEl = document.querySelector('#meal-card');
+var mealTitle = document.querySelector('#meal-title');
 var mealDescription = document.querySelector('#meal-description');
 var mealList = document.querySelector('#meal-list');
 var mealImg = document.querySelector('#meal-img')
-var featuredDrink = document.querySelector('#featured-drink');
-var featuredDrinkTitle = document.querySelector('#featured-drink-title');
+var drinkEl = document.querySelector('#drink-card');
+var drinkTitle = document.querySelector('#drink-title');
 var drinkDescription = document.querySelector('#drink-description');
 var drinkList = document.querySelector('#drink-list');
 var drinkImg = document.querySelector('#drink-img')
-var featuredMovie = document.querySelector('#featured-movie');
-var featuredMovieTitle = document.querySelector('#featured-movie-title');
+var movieEL = document.querySelector('#movie-card');
+var movieTitle = document.querySelector('#movie-title');
 var movieDescription = document.querySelector('#movie-description');
 var movieList = document.querySelector('#movie-list');
 var movieImg =  document.querySelector('#movie-img');
+var allCheck = document.querySelector('#all-check');
 var movieId;
 var mealApiRandom = 'https://www.themealdb.com/api/json/v1/1/random.php';
 var drinkApiRandom = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+
+var submitSearch = document.querySelector('#checkbox-submit');
 
 var movies = ["tt0110912", "tt0038650", "tt0082971", "tt0910970", "tt1375666", "tt0109830", "tt0068646", "tt0111161"]
 
@@ -29,9 +32,9 @@ function getRandomMeal() {
             return response.json();
         })
         .then(function(data){
-            console.log(data);
-            console.log(data.meals[0].strInstructions);
-            featuredMealTitle.textContent = data.meals[0].strMeal;
+            // console.log(data);
+            // console.log(data.meals[0].strInstructions);
+            mealTitle.textContent = data.meals[0].strMeal;
             mealDescription.textContent = data.meals[0].strInstructions;
             mealImg.setAttribute('src', data.meals[0].strMealThumb);
             var mealIngredients = Object.keys(data.meals[0]).filter(function(item) {
@@ -50,7 +53,7 @@ function getRandomMeal() {
                 return data.meals[0][key];
 
             })
-            console.log(mealPortions)
+            // console.log(mealPortions)
             for (var i = 0; i < mealIngredients.length; i++) {
                 var mealLi = document.createElement('li')
                 mealLi.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
@@ -62,7 +65,6 @@ function getRandomMeal() {
     
 
 }
-getRandomMeal();
 
 function getRandomDrink() {
     fetch(drinkApiRandom) 
@@ -70,9 +72,9 @@ function getRandomDrink() {
             return response.json();
         })
         .then(function(data){
-            console.log(data);
-            console.log(data.drinks[0].strInstructions);
-            featuredDrinkTitle.textContent = data.drinks[0].strDrink;
+            // console.log(data);
+            // console.log(data.drinks[0].strInstructions);
+            drinkTitle.textContent = data.drinks[0].strDrink;
             drinkDescription.textContent = data.drinks[0].strInstructions;
             drinkImg.setAttribute('src', data.drinks[0].strDrinkThumb);
             var drinkIngredients = Object.keys(data.drinks[0]).filter(function(item) {
@@ -91,7 +93,7 @@ function getRandomDrink() {
                 return data.drinks[0][key];
 
             })
-            console.log(drinkPortions)
+            // console.log(drinkPortions)
             for (var i = 0; i < drinkIngredients.length; i++) {
                 var drinkLi = document.createElement('li')
                 drinkLi.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
@@ -102,7 +104,6 @@ function getRandomDrink() {
     
 
 }
-getRandomDrink();
 
 function getRandomMovie () {
     var randomIndex = Math.floor(Math.random() * movies.length);
@@ -114,9 +115,9 @@ function getRandomMovie () {
         return response.json();
     })
         .then(function(data){
-        console.log(data);
-        featuredMovieTitle.textContent = data.Title;
-        console.log(data.Poster);
+        // console.log(data);
+        movieTitle.textContent = data.Title;
+        // console.log(data.Poster);
         movieImg.setAttribute('src', data.Poster);
         movieDescription.textContent = data.Plot;
         var movieLi1 = document.createElement('li');
@@ -139,4 +140,30 @@ function getRandomMovie () {
     })
 }
 
-getRandomMovie();
+searchBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var formChecks = document.querySelectorAll('.form-check-input')
+    console.log(formChecks.checked);
+    // console.log(drinkCheck.value);
+    if (drinkCheck.checked || allCheck.checked) {
+        console.log('Drinks!');
+        getRandomDrink();
+        drinkEl.style.display = null;
+
+
+    };
+    if (mealCheck.checked || allCheck.checked) {
+        console.log('Food!');
+        getRandomMeal();
+        mealEl.style.display = null;
+
+
+    };
+    if (movieCheck.checked || allCheck.checked) {
+        console.log('Movie!');
+        getRandomMovie();
+        movieEL.style.display = null;
+    };
+
+});

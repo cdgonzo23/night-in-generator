@@ -14,7 +14,7 @@
         <p class="text-light text-center pb-3">Take the planning out of your night-in</p>
     </header>
     <main class="d-flex flex-column justify-content-center">
-        <fieldset class="form-group m-5 align-self-center">
+        <fieldset class="form-group m-5 align-self-center" id="checkbox-submit">
             <legend class="mt-4">What are you looking for?</legend>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="meal-check">
@@ -40,14 +40,14 @@
                   All three!
                 </label>
               </div>
-              <button id="search-btn" type="button" class="btn btn-primary mt-3">Search</button>
+              <button id="search-btn" type="submit" class="btn btn-primary mt-3">Search</button>
           </fieldset>
 
           <div class="row m-5 ">
-            <div id='featured-meal' class="card mb-3 col-lg-4">
-                <h3 class="card-header">Featured Meal</h3>
+            <div id='meal-card' style="display: none" class="card mb-3 col-lg-4">
+                <h3 class="card-header">Meal Search</h3>
                 <div class="card-body">
-                  <h5 id='featured-meal-title' class="card-title">Special title treatment</h5>
+                  <h5 id='meal-title' class="card-title">Special title treatment</h5>
                   
                 </div>
                 <img id="meal-img" src="" class="d-flex align-self-center" width="50%" height="350" aria-label="Placeholder: Image cap" focusable="false" viewBox="0 0 318 180">
@@ -58,10 +58,10 @@
                 <ul id="meal-list" class="list-group list-group-flush"></ul>
               </div>
 
-              <div id='featured-drink' class="card mb-3 col-lg-4 align-content-flex-start">
-                <h3 class="card-header">Featured Drink</h3>
+              <div id='drink-card' style="display: none" class="card mb-3 col-lg-4 align-content-flex-start">
+                <h3 class="card-header">Drink Search</h3>
                 <div class="card-body">
-                  <h5 id='featured-drink-title' class="card-title">Special title treatment</h5>
+                  <h5 id='drink-title' class="card-title">Special title treatment</h5>
                   
                 </div>
                 <img id="drink-img" src="" class="d-flex align-self-center" width="50%" height="350" aria-label="Placeholder: Image cap" focusable="false" viewBox="0 0 318 180">
@@ -72,10 +72,10 @@
                 <ul id="drink-list"  class="list-group list-group-flush"></ul>
               </div>
 
-              <div id='featured-movie' class="card mb-3 col-lg-4">
-                <h3 class="card-header">Featured Movie</h3>
+              <div id='movie-card' style="display: none" class="card mb-3 col-lg-4">
+                <h3 class="card-header">Movie Search</h3>
                 <div class="card-body">
-                  <h5 id='featured-movie-title' class="card-title">Special title treatment</h5>
+                  <h5 id='movie-title' class="card-title">Special title treatment</h5>
                   
                 </div>
                 <img id="movie-img" src="" class="d-flex align-self-center" width="50%" height="350" aria-label="Placeholder: Image cap" focusable="false" viewBox="0 0 318 180">
