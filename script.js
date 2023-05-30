@@ -22,10 +22,9 @@ var movieId;
 var mealApiRandom = 'https://www.themealdb.com/api/json/v1/1/random.php';
 var drinkApiRandom = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 var submitSearch = document.querySelector('#checkbox-submit');
-var movies = ["tt0110912", "tt0038650", "tt0082971", "tt0910970", "tt1375666", "tt0109830", "tt0068646", "tt0111161"]
-var mealArr = [];
-var drinkArr= [];
+var movies = ["tt0110912", "tt0038650", "tt0082971", "tt0910970", "tt1375666", "tt0109830", "tt0068646", "tt0111161" , "tt0816692", "tt0120689", "tt0088763", "tt0102926", "tt0172495", "tt0407887", "tt2582802", "tt0034583", "tt1853728", "tt1345836", "tt0112573", "tt0119217", "tt0338013", "tt0211915", "tt0097576", "tt0120382", "tt1130884", "tt0107290", "tt0477348", "tt1205489", "tt0405159", "tt2278388"]
 
+// create function to add content to movieEl card using api data
 function buildMealCard(data){
     mealEl.style.display = null;
     mealTitle.textContent = data.meals[0].strMeal;
@@ -47,7 +46,6 @@ function buildMealCard(data){
         return data.meals[0][key];
 
     })
-    // console.log(mealPortions)
     for (var i = 0; i < mealIngredients.length; i++) {
         var mealLi = document.createElement('li')
         mealLi.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
@@ -57,6 +55,7 @@ function buildMealCard(data){
 
 }
 
+// create function to add content to drinkEl card using api data
 function buildDrinkCard(data){
     drinkEl.style.display = null; 
     drinkTitle.textContent = data.drinks[0].strDrink;
@@ -78,7 +77,7 @@ function buildDrinkCard(data){
         return data.drinks[0][key];
 
     })
-    // console.log(drinkPortions)
+
     for (var i = 0; i < drinkIngredients.length; i++) {
         var drinkLi = document.createElement('li')
         drinkLi.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
@@ -87,6 +86,7 @@ function buildDrinkCard(data){
     }
 }
 
+// create function at add content to movieEl card using api data
 function buildMovieCard(data) {
     movieEL.style.display = null;
     movieTitle.textContent = data.Title;
@@ -111,7 +111,7 @@ function buildMovieCard(data) {
     movieList.appendChild(movieLi4);
 }
 
-
+// function to fetch random meal api and call buildMealCard
 function getRandomMeal() {
     fetch(mealApiRandom) 
         .then(function(response){
@@ -119,12 +119,14 @@ function getRandomMeal() {
         })
         .then(function(data){
             console.log(data);
+            // set meal id to local storage to use for recent search
             localStorage.setItem('meals', (data.meals[0].idMeal));
             console.log(localStorage.getItem('meals'));
             buildMealCard(data);
         })
 }
 
+// function to fetch random drink api and call buildDrinkCard
 function getRandomDrink() {
     fetch(drinkApiRandom) 
         .then(function(response){
@@ -132,7 +134,7 @@ function getRandomDrink() {
         })
         .then(function(data){
             console.log(data);
-            // console.log(data.drinks[0].strInstructions);
+            // set drink id to local storage to use for recent search
             localStorage.setItem('drinks', (data.drinks[0].idDrink));
             console.log(localStorage.getItem('drinks'));
             buildDrinkCard(data);
@@ -141,9 +143,11 @@ function getRandomDrink() {
 
 }
 
+// function to fetch random movie by randomly selecting id in movies array to use as movie id in fetch url
 function getRandomMovie () {
     var randomIndex = Math.floor(Math.random() * movies.length);
     movieId = movies[randomIndex];
+    // set movie id to local storage to use for recent search
     localStorage.setItem('movie', (movieId));
     console.log(localStorage.getItem('movie'));
     var movieApi = 'http://www.omdbapi.com/?i=' + movieId + '&apikey=b4cf8052'
@@ -153,18 +157,17 @@ function getRandomMovie () {
         return response.json();
     })
         .then(function(data){
-        // console.log(data);
        buildMovieCard(data);
     })
 }
 
+// add event listener to search button 
 searchBtn.addEventListener('click', function(event) {
     event.preventDefault();
+    // set recent-search display to none to remove h2 visibility
     document.getElementById('recent-search').style.display = 'none';
 
-    var formChecks = document.querySelectorAll('.form-check-input')
-    console.log(formChecks.checked);
-    // console.log(drinkCheck.value);
+    // add conditional to run all three api functions if allcheck is checked, set all display to null
     if(allCheck.checked) {
         getRandomDrink();
         getRandomMeal();
@@ -173,30 +176,29 @@ searchBtn.addEventListener('click', function(event) {
         mealEl.style.display = null;
         movieEL.style.display = null;
     }
+    // add conditional to call random drink api function if drinkCheck is checked; set other elements display to none
    if (drinkCheck.checked) {
         getRandomDrink();
         mealEl.style.display = 'none';
         movieEL.style.display = 'none';
         
     }
+    // add conditional to call random meal api function if mealCheck is checked; set other elements display to none
     if (mealCheck.checked) {
-        console.log('Food!');
         getRandomMeal();
         drinkEl.style.display = 'none';
         movieEL.style.display = 'none';
         
     };
+    // add conditional to call random movie api function if movieCheck is checked; set other elements display to none
     if (movieCheck.checked) {
-        console.log('Movie!');
         getRandomMovie();
         drinkEl.style.display ='none';
         mealEl.style.display = 'none';
-        
-       
     };
-
 });
 
+// function to fetch meal api using id saved from previous searches using local storage
 function getPreviousMeal (){
     var mealName = localStorage.getItem('meals');
     console.log(mealName);
@@ -213,10 +215,12 @@ function getPreviousMeal (){
     })
 }
 
+// conditional to call getPreviousMeals if local storage contains key 'meals' with value
 if (localStorage.getItem('meals')){
     getPreviousMeal();
 }
 
+// function to fetch drink api using id saved from previous searches using local storage
 function getPreviousDrink(){
     var drinkName = localStorage.getItem('drinks');
     var drinkApiName ='https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinkName;
@@ -230,11 +234,12 @@ function getPreviousDrink(){
         })
 }
 
-
+// conditional to call getPreviousDrink if local storage contains key 'drinks' with value
 if (localStorage.getItem('drinks')){
     getPreviousDrink();
 }
 
+// function to fetch movie api using id saved from previous searches using local storage
 function getPreviousMovie(){
     var pastMovieId = localStorage.getItem('movie');
     var pastMovieApi = 'http://www.omdbapi.com/?i=' + pastMovieId + '&apikey=b4cf8052'
@@ -248,6 +253,7 @@ function getPreviousMovie(){
     })
 }
 
+// conditional to call getPreviousMovie if local storage contains key 'movie' with value
 if (localStorage.getItem('movie')){
     getPreviousMovie();
 }
