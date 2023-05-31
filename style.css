@@ -1,3 +1,7 @@
+:root {
+    --custom-gray: #3333;
+}
+
 .card-body {
     flex: 0 0 auto;
 }
@@ -5,7 +9,7 @@
 .modal-content {
     max-width: 400px;
     border-radius: 8px;
-    box-shadow: 5px 5px 5px var(--gray-dark);
+    box-shadow: 3px 12px 20px var(--custom-gray);
 }
 
 #search-btn {
@@ -13,9 +17,9 @@
 }
 
 img {
-    border: 1px solid var(--gray-dark);
+    border: 1px solid var(--custom-gray);
     border-radius: 8px;
-    box-shadow: 8px 8px 5px var(--gray-dark);
+    box-shadow: 2px 8px 16px var(--custom-gray);
 }
 
 .form-check {
