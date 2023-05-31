@@ -1,115 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Night-In Generator</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night-In Generator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css"
+    integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body class="row d-flex justify-content-center">
-    <header class="bg-dark col-12 ">
-        <h1 class="text-light text-center py-3 mt-3">Night-In Generator</h1>
-        <p class="text-light text-center pb-3">Take the planning out of your night-in</p>
-    </header>
-    <main class="d-flex flex-column justify-content-center">
-        <fieldset class="form-group m-5 align-self-center justify-content-center" id="checkbox-submit">
-            <legend class="mt-4">What are you looking for?</legend>
-            <div class="d-flex flex-column flex-wrap align-content-center">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="meal-check">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Meal
-                </label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="drink-check">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Drink
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="movie-check">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Movie
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="all-check">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    All three!
-                  </label>
-                </div>
-                <button id="search-btn" type="submit" class="btn btn-primary mt-3">Search</button>
-            </div>
-          </fieldset>
-          <div class="modal">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content d-flex text-center bg-primary">
-                <div class="modal-header flex-column align-items-center">
-                  <h5 class="modal-title text-white">Uh Oh!</h5>
-                  <p class="text-white">Please Select an Option</p>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
+  <header class="bg-dark col-12 ">
+    <h1 class="text-light text-center py-3 mt-3">Night-In Generator</h1>
+    <p class="text-light text-center pb-3">Take the planning out of your night-in</p>
+  </header>
+  <main class="d-flex flex-column justify-content-center">
+    <fieldset class="form-group m-5 align-self-center justify-content-center" id="checkbox-submit">
+      <legend class="mt-4">What are you looking for?</legend>
+      <div class="d-flex flex-column flex-wrap align-content-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="meal-check">
+          <label class="form-check-label" for="flexCheckDefault">
+            Meal
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="drink-check">
+          <label class="form-check-label" for="flexCheckDefault">
+            Drink
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="movie-check">
+          <label class="form-check-label" for="flexCheckDefault">
+            Movie
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="all-check">
+          <label class="form-check-label" for="flexCheckDefault">
+            All three!
+          </label>
+        </div>
+        <button id="search-btn" type="submit" class="btn btn-primary mt-3">Search</button>
+      </div>
+    </fieldset>
+    <div class="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content d-flex text-center bg-primary">
+          <div class="modal-header flex-column align-items-center">
+            <h5 class="modal-title text-white">Uh Oh!</h5>
+            <p class="text-white">Please Select an Option</p>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
-          <div id="recent-search" class="mx-5">
-            <h2 class="text-dark text-center mt-5">Most Recent Search Results:</h2>
+        </div>
+      </div>
+    </div>
+    <div id="recent-search" class="mx-5">
+      <h2 class="text-dark text-center mt-5">Most Recent Search Results:</h2>
+    </div>
+
+    <div class="row mx-5 my-2 justify-content-center">
+      <div id="meal-card" style="display: none" class="mb-3 col-12 col-lg-4">
+        <div class="card">
+          <h3 class="card-header">Meal Search</h3>
+          <div class="card-body">
+            <h5 id="meal-title" class="card-title">Special title treatment</h5>
           </div>
-
-          <div class="row mx-5 my-2">
-            <div id='meal-card' style="display: none" class="card mb-3 col-lg">
-                <h3 class="card-header">Meal Search</h3>
-                <div class="card-body">
-                  <h5 id='meal-title' class="card-title">Special title treatment</h5>
-                  
-                </div>
-                <img id="meal-img" src="" class="d-flex align-self-center" style="aspect-ratio: 1; height: auto; max-width: 300px;" aria-label="Placeholder: Image cap">
-              </img>
-                <div class="card-body">
-                  <p id='meal-description' class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                <ul id="meal-list" class="list-group list-group-flush"></ul>
-              </div>
-
-              <div id='drink-card' style="display: none" class="card mb-3 col-lg align-content-flex-start">
-                <h3 class="card-header">Drink Search</h3>
-                <div class="card-body">
-                  <h5 id='drink-title' class="card-title">Special title treatment</h5>
-                  
-                </div>
-                <img id="drink-img" src="" class="d-flex align-self-center" style="aspect-ratio: 1; height: auto; max-width: 300px;" aria-label="Placeholder: Image cap">
-                </img>
-                <div class="card-body">
-                  <p id='drink-description'  class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                <ul id="drink-list"  class="list-group list-group-flush"></ul>
-              </div>
-
-              <div id='movie-card' style="display: none" class="card mb-3 col-lg">
-                <h3 class="card-header">Movie Search</h3>
-                <div class="card-body">
-                  <h5 id='movie-title' class="card-title">Special title treatment</h5>
-                  
-                </div>
-                <img id="movie-img" src="" class="d-flex align-self-center" style="aspect-ratio: 1; height: 400px; max-width: 300px;" aria-label="Placeholder: Image cap">
-              </img>
-                <div class="card-body">
-                  <p id='movie-description' class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                <ul id="movie-list" class="list-group list-group-flush">
-                
-                </ul>
-                <div class="card-body">
-                 <ul></ul>
-                </div>
-              </div>
+          <img id="meal-img" src="" class="d-flex align-self-center"
+            style="aspect-ratio: 1; height: auto; max-width: 300px;" aria-label="Placeholder: Image cap">
+          </img>
+          <div class="card-body">
+            <p id="meal-description" class="card-text">Some quick example text to build on the card title and make up the
+              bulk of the card's content.</p>
           </div>
-    </main>
-    
+          <ul id="meal-list" class="list-group list-group-flush"></ul>
+        </div>
+      </div>
 
-<script src="./script.js"></script>
+      <div id="drink-card" style="display: none" class="mb-3 col-12 col-lg-4">
+        <div class="card">
+          <h3 class="card-header">Drink Search</h3>
+          <div class="card-body">
+            <h5 id="drink-title" class="card-title">Special title treatment</h5>
+          </div>
+          <img id="drink-img" src="" class="d-flex align-self-center"
+            style="aspect-ratio: 1; height: auto; max-width: 300px;" aria-label="Placeholder: Image cap">
+          </img>
+          <div class="card-body">
+            <p id="drink-description" class="card-text">Some quick example text to build on the card title and make up the
+              bulk of the card's content.</p>
+          </div>
+          <ul id="drink-list" class="list-group list-group-flush"></ul>
+        </div>
+      </div>
+
+      <div id="movie-card" style="display: none" class="mb-3 col-12 col-lg-4">
+        <div class="card">
+          <h3 class="card-header">Movie Search</h3>
+          <div class="card-body">
+            <h5 id="movie-title" class="card-title">Special title treatment</h5>
+          </div>
+          <img id="movie-img" src="" class="d-flex align-self-center"
+            style="aspect-ratio: 1; height: 400px; max-width: 300px;" aria-label="Placeholder: Image cap">
+          </img>
+          <div class="card-body">
+            <p id="movie-description" class="card-text">Some quick example text to build on the card title and make up the
+              bulk of the card's content.</p>
+          </div>
+          <ul id="movie-list" class="list-group list-group-flush"></ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <script src="./script.js"></script>
 </body>
+
 </html>
