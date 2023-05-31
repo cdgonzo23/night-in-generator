@@ -154,7 +154,7 @@ function getRandomMovie () {
     // set movie id to local storage to use for recent search
     localStorage.setItem('movie', (movieId));
     console.log(localStorage.getItem('movie'));
-    var movieApi = 'http://www.omdbapi.com/?i=' + movieId + '&apikey=b4cf8052'
+    var movieApi = 'https://www.omdbapi.com/?i=' + movieId + '&apikey=b4cf8052'
     
     fetch(movieApi)
         .then(function(response){
@@ -211,7 +211,7 @@ if (localStorage.getItem('drinks')){
 // function to fetch movie api using id saved from previous searches using local storage
 function getPreviousMovie(){
     var pastMovieId = localStorage.getItem('movie');
-    var pastMovieApi = 'http://www.omdbapi.com/?i=' + pastMovieId + '&apikey=b4cf8052'
+    var pastMovieApi = 'https://www.omdbapi.com/?i=' + pastMovieId + '&apikey=b4cf8052'
 
     fetch(pastMovieApi)
     .then(function(response) {
