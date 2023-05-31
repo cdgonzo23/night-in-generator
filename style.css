@@ -1,3 +1,23 @@
 .card-body {
     flex: 0 0 auto;
 }
+
+.modal-content {
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px var(--gray-dark);
+}
+
+#search-btn {
+    border-radius: 4px;
+}
+
+img {
+    border: 1px solid var(--gray-dark);
+    border-radius: 8px;
+    box-shadow: 8px 8px 5px var(--gray-dark);
+}
+
+.form-check {
+    font-size: large;
+}
