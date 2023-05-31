@@ -117,6 +117,7 @@ function buildMovieCard(data) {
 
 // function to fetch random meal api and call buildMealCard
 function getRandomMeal() {
+
     fetch(mealApiRandom) 
         .then(function(response){
             return response.json();
@@ -132,6 +133,7 @@ function getRandomMeal() {
 
 // function to fetch random drink api and call buildDrinkCard
 function getRandomDrink() {
+
     fetch(drinkApiRandom) 
         .then(function(response){
             return response.json();
@@ -222,10 +224,33 @@ function getPreviousMovie(){
     })
 }
 
+function resetCheckboxes (){
+    allCheck.checked = false;
+    movieCheck.checked = false;
+    drinkCheck.checked = false;
+    mealCheck.checked = false;
+    movieCheck.removeAttribute('disabled', 'disabled');
+    mealCheck.removeAttribute('disabled', 'disabled');
+    drinkCheck.removeAttribute('disabled', 'disabled');
+}
+
 // conditional to call getPreviousMovie if local storage contains key 'movie' with value
 if (localStorage.getItem('movie')){
     getPreviousMovie();
 }
+
+// add event listener to disable other checkboxes if allCheck is checked
+allCheck.addEventListener('click', function(){
+    if (!movieCheck.disabled) {
+         movieCheck.setAttribute('disabled', 'disabled');
+         mealCheck.setAttribute('disabled', 'disabled');
+         drinkCheck.setAttribute('disabled', 'disabled');
+    } else {
+        movieCheck.removeAttribute('disabled', 'disabled');
+         mealCheck.removeAttribute('disabled', 'disabled');
+         drinkCheck.removeAttribute('disabled', 'disabled');
+    }
+})
 
 // add event listener to search button 
 searchBtn.addEventListener('click', function(event) {
@@ -237,6 +262,7 @@ searchBtn.addEventListener('click', function(event) {
         getRandomDrink();
         getRandomMeal();
         getRandomMovie();
+        
         drinkEl.style.display = null;
         mealEl.style.display = null;
         movieEL.style.display = null; 
@@ -272,6 +298,7 @@ searchBtn.addEventListener('click', function(event) {
     if (!movieCheck.checked && !mealCheck.checked && !drinkCheck.checked && !allCheck.checked) {
         modal.style.display = 'block';
     }
+    resetCheckboxes();
 });
 
 
