@@ -23,6 +23,10 @@ var mealApiRandom = 'https://www.themealdb.com/api/json/v1/1/random.php';
 var drinkApiRandom = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 var submitSearch = document.querySelector('#checkbox-submit');
 var movies = ["tt0110912", "tt0038650", "tt0082971", "tt0910970", "tt1375666", "tt0109830", "tt0068646", "tt0111161" , "tt0816692", "tt0120689", "tt0088763", "tt0102926", "tt0172495", "tt0407887", "tt2582802", "tt0034583", "tt1853728", "tt1345836", "tt0112573", "tt0119217", "tt0338013", "tt0211915", "tt0097576", "tt0120382", "tt1130884", "tt0107290", "tt0477348", "tt1205489", "tt0405159", "tt2278388"]
+var modal = document.querySelector('.modal');
+var modalCloseBtn = document.querySelector('.btn-secondary')
+var formCheck = document.querySelectorAll('.form-check-input')
+
 
 // create function to add content to movieEl card using api data
 function buildMealCard(data){
@@ -161,42 +165,7 @@ function getRandomMovie () {
     })
 }
 
-// add event listener to search button 
-searchBtn.addEventListener('click', function(event) {
-    event.preventDefault();
-    // set recent-search display to none to remove h2 visibility
-    document.getElementById('recent-search').style.display = 'none';
 
-    // add conditional to run all three api functions if allcheck is checked, set all display to null
-    if(allCheck.checked) {
-        getRandomDrink();
-        getRandomMeal();
-        getRandomMovie();
-        drinkEl.style.display = null;
-        mealEl.style.display = null;
-        movieEL.style.display = null;
-    }
-    // add conditional to call random drink api function if drinkCheck is checked; set other elements display to none
-   if (drinkCheck.checked) {
-        getRandomDrink();
-        mealEl.style.display = 'none';
-        movieEL.style.display = 'none';
-        
-    }
-    // add conditional to call random meal api function if mealCheck is checked; set other elements display to none
-    if (mealCheck.checked) {
-        getRandomMeal();
-        drinkEl.style.display = 'none';
-        movieEL.style.display = 'none';
-        
-    };
-    // add conditional to call random movie api function if movieCheck is checked; set other elements display to none
-    if (movieCheck.checked) {
-        getRandomMovie();
-        drinkEl.style.display ='none';
-        mealEl.style.display = 'none';
-    };
-});
 
 // function to fetch meal api using id saved from previous searches using local storage
 function getPreviousMeal (){
@@ -257,3 +226,55 @@ function getPreviousMovie(){
 if (localStorage.getItem('movie')){
     getPreviousMovie();
 }
+
+// add event listener to search button 
+searchBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    // set recent-search display to none to remove h2 visibility
+
+    // add conditional to run all three api functions if allcheck is checked, set all display to null
+    if(allCheck.checked) {
+        getRandomDrink();
+        getRandomMeal();
+        getRandomMovie();
+        drinkEl.style.display = null;
+        mealEl.style.display = null;
+        movieEL.style.display = null; 
+        document.getElementById('recent-search').style.display = 'none';
+
+    }
+    // add conditional to call random drink api function if drinkCheck is checked; set other elements display to none
+   if (drinkCheck.checked) {
+        getRandomDrink();
+        mealEl.style.display = 'none';
+        movieEL.style.display = 'none';
+        document.getElementById('recent-search').style.display = 'none';
+
+        
+    }
+    // add conditional to call random meal api function if mealCheck is checked; set other elements display to none
+    if (mealCheck.checked) {
+        getRandomMeal();
+        drinkEl.style.display = 'none';
+        movieEL.style.display = 'none';
+        document.getElementById('recent-search').style.display = 'none';
+
+        
+    };
+    // add conditional to call random movie api function if movieCheck is checked; set other elements display to none
+    if (movieCheck.checked) {
+        getRandomMovie();
+        drinkEl.style.display ='none';
+        mealEl.style.display = 'none';
+        document.getElementById('recent-search').style.display = 'none';
+
+    };
+    if (!movieCheck.checked && !mealCheck.checked && !drinkCheck.checked && !allCheck.checked) {
+        modal.style.display = 'block';
+    }
+});
+
+
+modalCloseBtn.addEventListener('click', function () {
+    modal.style.display = 'none';
+})
