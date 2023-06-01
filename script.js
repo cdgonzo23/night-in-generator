@@ -89,14 +89,14 @@ function buildDrinkCard(data){
         drinkList.appendChild(drinkLi);
     }
 }
-
+var movieLi1 = document.createElement('li');
 // create function at add content to movieEl card using api data
 function buildMovieCard(data) {
     movieEL.style.display = null;
     movieTitle.textContent = data.Title;
     movieImg.setAttribute('src', data.Poster);
     movieDescription.textContent = data.Plot;
-    var movieLi1 = document.createElement('li');
+    
     movieLi1.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
     movieLi1.textContent = 'Starring: ' + data.Actors;
     var movieLi2 = document.createElement('li');
@@ -224,6 +224,7 @@ function getPreviousMovie(){
     })
 }
 
+// add function to reset check boxes to initial phase
 function resetCheckboxes (){
     allCheck.checked = false;
     movieCheck.checked = false;
@@ -232,6 +233,13 @@ function resetCheckboxes (){
     movieCheck.removeAttribute('disabled', 'disabled');
     mealCheck.removeAttribute('disabled', 'disabled');
     drinkCheck.removeAttribute('disabled', 'disabled');
+}
+
+// add function to reset content of lists in cards to null 
+function resetCards() {
+    drinkList.innerHTML = null;
+    movieList.innerHTML = null;
+    mealList.innerHTML = null;
 }
 
 // conditional to call getPreviousMovie if local storage contains key 'movie' with value
@@ -259,6 +267,7 @@ searchBtn.addEventListener('click', function(event) {
 
     // add conditional to run all three api functions if allcheck is checked, set all display to null
     if(allCheck.checked) {
+        resetCards();
         getRandomDrink();
         getRandomMeal();
         getRandomMovie();
@@ -271,6 +280,7 @@ searchBtn.addEventListener('click', function(event) {
     }
     // add conditional to call random drink api function if drinkCheck is checked; set other elements display to none
    if (drinkCheck.checked) {
+        resetCards();
         getRandomDrink();
         mealEl.style.display = 'none';
         movieEL.style.display = 'none';
@@ -280,6 +290,7 @@ searchBtn.addEventListener('click', function(event) {
     }
     // add conditional to call random meal api function if mealCheck is checked; set other elements display to none
     if (mealCheck.checked) {
+        resetCards();
         getRandomMeal();
         drinkEl.style.display = 'none';
         movieEL.style.display = 'none';
@@ -289,6 +300,7 @@ searchBtn.addEventListener('click', function(event) {
     };
     // add conditional to call random movie api function if movieCheck is checked; set other elements display to none
     if (movieCheck.checked) {
+        resetCards();
         getRandomMovie();
         drinkEl.style.display ='none';
         mealEl.style.display = 'none';
