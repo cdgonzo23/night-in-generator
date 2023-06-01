@@ -296,7 +296,7 @@ searchBtn.addEventListener('click', function(event) {
 
     };
     if (!movieCheck.checked && !mealCheck.checked && !drinkCheck.checked && !allCheck.checked) {
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
     }
     resetCheckboxes();
 });
