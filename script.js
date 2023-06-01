@@ -89,14 +89,14 @@ function buildDrinkCard(data){
         drinkList.appendChild(drinkLi);
     }
 }
-var movieLi1 = document.createElement('li');
+
 // create function at add content to movieEl card using api data
 function buildMovieCard(data) {
     movieEL.style.display = null;
     movieTitle.textContent = data.Title;
     movieImg.setAttribute('src', data.Poster);
     movieDescription.textContent = data.Plot;
-    
+    var movieLi1 = document.createElement('li');
     movieLi1.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
     movieLi1.textContent = 'Starring: ' + data.Actors;
     var movieLi2 = document.createElement('li');
@@ -307,13 +307,14 @@ searchBtn.addEventListener('click', function(event) {
         document.getElementById('recent-search').style.display = 'none';
 
     };
+    // display modal if no checkboxes are checked
     if (!movieCheck.checked && !mealCheck.checked && !drinkCheck.checked && !allCheck.checked) {
         modal.style.display = 'flex';
     }
     resetCheckboxes();
 });
 
-
+// event listener to close modal when closebtn is clicked
 modalCloseBtn.addEventListener('click', function () {
     modal.style.display = 'none';
 })
