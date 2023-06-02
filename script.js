@@ -30,30 +30,36 @@ var formCheck = document.querySelectorAll('.form-check-input')
 
 // create function to add content to movieEl card using api data
 function buildMealCard(data){
+    var meal = data.meals[0];
     mealEl.style.display = null;
-    mealTitle.textContent = data.meals[0].strMeal;
-    mealDescription.textContent = data.meals[0].strInstructions;
-    mealImg.setAttribute('src', data.meals[0].strMealThumb);
-    var mealIngredients = Object.keys(data.meals[0]).filter(function(item) {
-        if (/^strIngredient/.test(item) && data.meals[0][item]) {
-            return true;
-        }
-    }).map(function(key){
-        return data.meals[0][key];
+    mealTitle.textContent = meal.strMeal;
+    mealDescription.textContent = meal.strInstructions;
+    mealImg.setAttribute('src', meal.strMealThumb);
+    var mealIngredients = Object.keys(meal)
+        .filter(function(key) {
+            return /^strIngredient/.test(key) && meal[key];
+        })
+        .map(function(key){
+            var matcher = key.match(/\d+$/).toString()
+            return {
+                ingredient: meal[key],
+                portion: meal['strMeasure' + matcher],
+            };
+    });
 
-    })
-    var mealPortions = Object.keys(data.meals[0]).filter(function(item) {
-        if (/^strMeasure/.test(item) && data.meals[0][item]) {
+    var mealPortions = Object.keys(meal).filter(function(item) {
+        if (/^strMeasure/.test(item) && meal[item]) {
             return true;
         }
     }).map(function(key){
-        return data.meals[0][key];
+        return meal[key];
 
     })
     for (var i = 0; i < mealIngredients.length; i++) {
+        var item = mealIngredients[i];
         var mealLi = document.createElement('li')
         mealLi.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
-        mealLi.textContent = mealIngredients[i] + ': ' + mealPortions[i];
+        mealLi.textContent = item.portion ? item.ingredient + ': ' + item.portion : item.ingredient;
         mealList.appendChild(mealLi);
     }
 
@@ -61,31 +67,30 @@ function buildMealCard(data){
 
 // create function to add content to drinkEl card using api data
 function buildDrinkCard(data){
+    var drink = data.drinks[0]
     drinkEl.style.display = null; 
-    drinkTitle.textContent = data.drinks[0].strDrink;
-    drinkDescription.textContent = data.drinks[0].strInstructions;
-    drinkImg.setAttribute('src', data.drinks[0].strDrinkThumb);
-    var drinkIngredients = Object.keys(data.drinks[0]).filter(function(item) {
-        if (/^strIngredient/.test(item) && data.drinks[0][item]) {
-            return true;
-        }
-    }).map(function(key){
-        return data.drinks[0][key];
+    drinkTitle.textContent = drink.strDrink;
+    drinkDescription.textContent = drink.strInstructions;
+    drinkImg.setAttribute('src', drink.strDrinkThumb);
+    var drinkIngredients = Object.keys(drink)
+        .filter(function(key) {
+            return /^strIngredient/.test(key) && drink[key];
+        })
+        .map(function(key){
+            var matcher = key.match(/\d+$/).toString();
+            return {
+                ingredient: drink[key],
+                portion: drink['strMeasure' + matcher],
+            };
+        });
 
-    })
-    var drinkPortions = Object.keys(data.drinks[0]).filter(function(item) {
-        if (/^strMeasure/.test(item) && data.drinks[0][item]) {
-            return true;
-        }
-    }).map(function(key){
-        return data.drinks[0][key];
-
-    })
+    console.log('INGREDIENTS', drinkIngredients);
 
     for (var i = 0; i < drinkIngredients.length; i++) {
-        var drinkLi = document.createElement('li')
+        var item = drinkIngredients[i];
+        var drinkLi = document.createElement('li');
         drinkLi.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
-        drinkLi.textContent = drinkIngredients[i] + ': ' + drinkPortions[i];
+        drinkLi.textContent = item.portion ? item.ingredient + ': ' + item.portion : item.ingredient;
         drinkList.appendChild(drinkLi);
     }
 }
