@@ -47,14 +47,6 @@ function buildMealCard(data){
             };
     });
 
-    var mealPortions = Object.keys(meal).filter(function(item) {
-        if (/^strMeasure/.test(item) && meal[item]) {
-            return true;
-        }
-    }).map(function(key){
-        return meal[key];
-
-    })
     for (var i = 0; i < mealIngredients.length; i++) {
         var item = mealIngredients[i];
         var mealLi = document.createElement('li')
