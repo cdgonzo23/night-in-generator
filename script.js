@@ -26,7 +26,7 @@ var movies = ["tt0110912", "tt0038650", "tt0082971", "tt0910970", "tt1375666", "
 var modal = document.querySelector('.modal');
 var modalCloseBtn = document.querySelector('.btn-secondary')
 var formCheck = document.querySelectorAll('.form-check-input')
-
+var searchHeader = document.getElementById('recent-search');
 
 // create function to add content to movieEl card using api data
 function buildMealCard(data){
@@ -241,6 +241,7 @@ function resetCards() {
 
 // conditional to call getPreviousMovie if local storage contains key 'movie' with value
 if (localStorage.getItem('movie')){
+    searchHeader.style.display = null;
     getPreviousMovie();
 }
 
@@ -260,8 +261,6 @@ allCheck.addEventListener('click', function(){
 // add event listener to search button 
 searchBtn.addEventListener('click', function(event) {
     event.preventDefault();
-    // set recent-search display to none to remove h2 visibility
-
     // add conditional to run all three api functions if allcheck is checked, set all display to null
     if(allCheck.checked) {
         resetCards();
@@ -271,8 +270,9 @@ searchBtn.addEventListener('click', function(event) {
         
         drinkEl.style.display = null;
         mealEl.style.display = null;
-        movieEL.style.display = null; 
-        document.getElementById('recent-search').style.display = 'none';
+        movieEL.style.display = null;
+        // set recent-search display to none to remove h2 visibility
+        searchHeader.style.display = 'none';
 
     }
     // add conditional to call random drink api function if drinkCheck is checked; set other elements display to none
@@ -281,7 +281,7 @@ searchBtn.addEventListener('click', function(event) {
         getRandomDrink();
         mealEl.style.display = 'none';
         movieEL.style.display = 'none';
-        document.getElementById('recent-search').style.display = 'none';
+        searchHeader.style.display = 'none';
 
         
     }
@@ -291,7 +291,7 @@ searchBtn.addEventListener('click', function(event) {
         getRandomMeal();
         drinkEl.style.display = 'none';
         movieEL.style.display = 'none';
-        document.getElementById('recent-search').style.display = 'none';
+        searchHeader.style.display = 'none';
 
         
     };
@@ -301,7 +301,7 @@ searchBtn.addEventListener('click', function(event) {
         getRandomMovie();
         drinkEl.style.display ='none';
         mealEl.style.display = 'none';
-        document.getElementById('recent-search').style.display = 'none';
+        searchHeader.style.display = 'none';
 
     };
     // display modal if no checkboxes are checked
